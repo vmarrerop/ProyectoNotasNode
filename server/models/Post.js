@@ -16,6 +16,18 @@ const postSchema = new mongoose.Schema(
       public_id: String,
       url: String,
     },
+    assignedTo: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    dueDate: {
+      type: Date,
+    },
+    completed: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

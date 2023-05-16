@@ -13,7 +13,7 @@ export const getPosts = async (req, res) => {
 
 export const createPost = async (req, res) => {
   try {
-    const { title, description } = req.body;
+    const { title, description, assignedTo, dueDate } = req.body;
     let image = null;
     if (req.files?.image) {
       const result = await uploadImage(req.files.image.tempFilePath);
@@ -23,7 +23,7 @@ export const createPost = async (req, res) => {
         public_id: result.public_id,
       };
     }
-    const newPost = new Post({ title, description, image });
+    const newPost = new Post({ title, description, image, assignedTo, dueDate });
     await newPost.save();
     return res.json(newPost);
   } catch (error) {
@@ -45,13 +45,13 @@ export const getPost = async (req, res) => {
 export const updatePost = async (req, res) => {
   try {
     const { id } = req.params;
-    // TODO: validate req.body before to update
+    // TODO: validate req.body before updating
 
-    // if a new image is uploaded upload it to cloudinary
+    // if a new image is uploaded, upload it to cloudinary
     if (req.files?.image) {
       const result = await uploadImage(req.files.image.tempFilePath);
       await fs.remove(req.files.image.tempFilePath);
-      // add the new image to the req.body
+      // add the new image to req.body
       req.body.image = {
         url: result.secure_url,
         public_id: result.public_id,

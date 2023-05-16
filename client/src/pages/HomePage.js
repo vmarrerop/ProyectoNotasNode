@@ -11,7 +11,7 @@ export function HomePage() {
       return (
         <div className="flex flex-col justify-center items-center">
           <VscEmptyWindow className="w-48 h-48 text-white" />
-          <h1 className="text-white text-2xl">There are no posts</h1>
+          <h1 className="text-white text-2xl">No se encontraron tareas</h1>
         </div>
       );
 
@@ -28,13 +28,13 @@ export function HomePage() {
     <main>
       <header className="flex justify-between items-center my-4">
         <h1 className="text-2xl text-gray-300 font-bold">
-          Posts ({posts.length})
+          Tareas ({posts.length})
         </h1>
         <Link
           to="/new"
           className="bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-500"
         >
-          Create Post
+          Crear Tarea
         </Link>
       </header>
 
